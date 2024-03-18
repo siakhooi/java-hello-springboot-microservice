@@ -19,7 +19,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: deliverables
-          path: ./target/hellospringbootmicroservice-1.0.0.jar
+          path: ./target/hellospringbootmicroservice-*.jar
       - uses: actions/upload-artifact@v3
         with:
           name: target

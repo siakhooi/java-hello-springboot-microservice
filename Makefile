@@ -15,3 +15,6 @@ build:
 
 run:
 	mvn spring-boot:run
+
+setversion:
+	mvn versions:set -DnewVersion=0.1.0

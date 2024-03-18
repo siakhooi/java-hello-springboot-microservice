@@ -20,4 +20,4 @@ jobs:
         with:
           repo_token: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
           file_glob: true
-          file: ./target/hellospringbootmicroservice-1.0.0.jar
+          file: ./hellospringbootmicroservice-*.jar
