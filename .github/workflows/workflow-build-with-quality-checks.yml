@@ -1,0 +1,26 @@
+name: Build and Test on Push
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  build-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - run: mvn verify
+      - uses: actions/upload-artifact@v3
+        with:
+          name: deliverables
+          path: ./target/hellospringbootmicroservice-1.0.0.jar
+      - uses: actions/upload-artifact@v3
+        with:
+          name: target
+          path: ./target/
