@@ -18,3 +18,6 @@ run:
 
 setversion:
 	mvn versions:set -DnewVersion=0.1.0
+
+create-release:
+	gh release create 0.1.0 --title 'initial release' --notes "initial release" --latest
