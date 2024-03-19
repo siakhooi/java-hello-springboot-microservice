@@ -6,6 +6,11 @@ on:
       secrets:
         REGISTRY_PASSWORD_DOCKER:
           required: true
+      inputs:
+        push-images:
+          required: true
+          type: boolean
+            
 
 jobs:
   build-docker-images:
@@ -28,6 +33,5 @@ jobs:
         with:
           context: ./
           file: ./deploy/docker/Dockerfile
-          push: false
+          push: ${{ inputs.push-images }}
           tags: siakhooi/hello-springboot-microservice:latest,siakhooi/hello-springboot-microservice:0.1.0
-      - run: docker images

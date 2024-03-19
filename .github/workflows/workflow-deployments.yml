@@ -12,3 +12,11 @@ jobs:
     uses: ./.github/workflows/deploy-github-release-assets.yml
     secrets:
       REGISTRY_PASSWORD_DOCKER: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
+
+  build-docker-images:
+    needs: build-with-maven
+    uses: ./.github/workflows/build-docker-image.yml
+    secrets:
+      REGISTRY_PASSWORD_DOCKER: ${{ secrets.REGISTRY_PASSWORD_DOCKER }}
+    with:
+      push-images: true
