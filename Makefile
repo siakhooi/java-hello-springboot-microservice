@@ -10,6 +10,8 @@ spring-init-hello-springboot-microservice:
 	  -d=web \
 	  --extract
 
+java17:
+	sdk install java 17.0.10-amzn
 build:
 	mvn verify
 
@@ -21,3 +23,11 @@ setversion:
 
 create-release:
 	gh release create 0.1.0 --title 'initial release' --notes "initial release" --latest
+
+docker-build:
+	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
+
+docker-run:
+	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest 
+docker-test:
+	curl http://localhost:8080/greeting

@@ -10,3 +10,7 @@ on:
 jobs:
   build-with-maven:
     uses: ./.github/workflows/build-with-maven.yml
+
+  build-docker-images:
+    needs: build-with-maven
+    uses: ./.github/workflows/build-docker-image.yml
