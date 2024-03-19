@@ -28,5 +28,8 @@ jobs:
         with:
           context: ./
           file: ./deploy/docker/Dockerfile
-          push: true
-          tags: siakhooi/hello-springboot-microservice:latest
+          push: fase
+          tags: 
+            - siakhooi/hello-springboot-microservice:latest
+            - siakhooi/hello-springboot-microservice:0.1.0
+      - run: docker images
