@@ -11,4 +11,4 @@ jobs:
     needs: build-with-maven
     uses: ./.github/workflows/deploy-github-release-assets.yml
     secrets:
-      TOKEN_TO_UPLOAD_ASSETS: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
+      REGISTRY_PASSWORD_DOCKER: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}

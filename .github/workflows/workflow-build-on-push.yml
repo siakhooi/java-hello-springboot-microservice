@@ -14,3 +14,5 @@ jobs:
   build-docker-images:
     needs: build-with-maven
     uses: ./.github/workflows/build-docker-image.yml
+    secrets:
+      REGISTRY_PASSWORD_DOCKER: ${{ secrets.REGISTRY_PASSWORD_DOCKER }}
