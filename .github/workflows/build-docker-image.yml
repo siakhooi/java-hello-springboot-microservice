@@ -11,9 +11,11 @@ jobs:
   build-debian:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
+          name: deliverables
+          path: ./
+      - run: ls -l
       - uses: docker/login-action@v3
         with:
           username: siakhooi
