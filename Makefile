@@ -24,7 +24,8 @@ setversion:
 
 create-release:
 	gh release create 0.2.0 --title 'add actuator' --notes "add actuator" --latest
-
+delete-release:
+	gh release delete --cleanup-tag 0.2.0
 docker-build:
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
 
