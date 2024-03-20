@@ -18,7 +18,8 @@ clean:
 	mvn clean
 run:
 	mvn spring-boot:run
-
+test:
+	mvn test
 setversion:
 	mvn versions:set -DnewVersion=0.2.0
 
@@ -28,13 +29,13 @@ delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
-
 docker-run:
 	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest 
 
 curl:
 	curl http://localhost:8080/greeting
-
+curl-earth:
+	curl http://localhost:8080/greeting?name=Earth
 curl-actuator:
 	curl http://localhost:8080/actuator |jq
 curl-actuator-health:
