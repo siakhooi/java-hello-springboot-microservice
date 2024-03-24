@@ -1,6 +1,14 @@
 replicaCount: 1
 
-image:
-  repository: siakhooi/hello-springboot-microservice
-  tag: "latest"
-  pullPolicy: IfNotPresent
+deployment:
+  image:
+    repository: siakhooi/hello-springboot-microservice
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: 300m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi  

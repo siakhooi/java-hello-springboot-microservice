@@ -14,16 +14,13 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
           ports:
             - containerPort: 8080
               name: http
               protocol: TCP
+{{- if .Values.deployment.resources  }}
           resources:
-            limits:
-              cpu: 300m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
+{{ .Values.deployment.resources | toYaml | indent 12 }}
+{{ end }}
