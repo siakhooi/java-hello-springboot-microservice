@@ -18,4 +18,6 @@ jobs:
       REGISTRY_PASSWORD_DOCKER: ${{ secrets.REGISTRY_PASSWORD_DOCKER }}
     with:
       push-images: false
-  
+
+  build-helm-chart:
+    uses: ./.github/workflows/build-helm-chart.yml

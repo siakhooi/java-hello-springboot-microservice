@@ -42,3 +42,13 @@ curl-actuator-health:
 	curl http://localhost:8080/actuator/health
 curl-actuator-shutdown:
 	curl -X POST http://localhost:8080/actuator/shutdown
+
+helm-create:
+	mkdir -p deploy/helm
+	cd deploy/helm
+	helm create hello-springboot-microservice
+
+helm-build:
+	helm lint deploy/helm/hello-springboot-microservice/
+	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/
+	helm package   deploy/helm/hello-springboot-microservice/ 

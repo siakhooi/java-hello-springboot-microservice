@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: siakhooi/hello-springboot-microservice
+  tag: "latest"
+  pullPolicy: IfNotPresent

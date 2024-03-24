@@ -1,0 +1,12 @@
+apiVersion: v2
+name: hello-springboot-microservice
+description: A Helm chart to POC Springboot Microservice
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.2.0"
+
+maintainers:
+  - name: Siak Hooi

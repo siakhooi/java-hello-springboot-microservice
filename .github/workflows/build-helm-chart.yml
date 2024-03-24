@@ -1,0 +1,20 @@
+name: Build helm chart
+
+on: 
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: helm lint deploy/helm/hello-springboot-microservice/
+      - run: helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/
+      - run: helm package   deploy/helm/hello-springboot-microservice/ 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: helm-chart
+          path: hello-springboot-microservice-*.tgz

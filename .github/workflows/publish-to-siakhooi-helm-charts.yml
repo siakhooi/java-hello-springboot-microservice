@@ -1,0 +1,21 @@
+name: Publish to siakhooi.github.io/helm-charts
+
+on:
+  workflow_call:
+    secrets:
+      PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN:
+        required: true
+
+jobs:
+  publish_apt:
+    name: publish to apt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: helm-chart
+          path: ./
+      - run: ./.github/bin/deploy-to-siakhooi-helm-charts.sh
+        env:
+          PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN }}

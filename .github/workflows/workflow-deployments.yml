@@ -7,9 +7,9 @@ jobs:
   build-with-maven:
     uses: ./.github/workflows/build-with-maven.yml
 
-  release-assets:
+  upload-release-assets-maven:
     needs: build-with-maven
-    uses: ./.github/workflows/deploy-github-release-assets.yml
+    uses: ./.github/workflows/deploy-github-release-assets-maven.yml
     secrets:
       TOKEN_TO_UPLOAD_ASSETS: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
 
@@ -20,3 +20,18 @@ jobs:
       REGISTRY_PASSWORD_DOCKER: ${{ secrets.REGISTRY_PASSWORD_DOCKER }}
     with:
       push-images: true
+
+  build-helm-chart:
+    uses: ./.github/workflows/build-helm-chart.yml
+
+  upload-release-assets-helm-chart:
+    needs: build-helm-chart
+    uses: ./.github/workflows/deploy-github-release-assets-helm-chart.yml
+    secrets:
+      TOKEN_TO_UPLOAD_ASSETS: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
+
+  publish-to-siakhooi-helm-charts:
+    needs: build-helm-chart
+    uses: ./.github/workflows/publish-to-siakhooi-helm-charts.yml
+    secrets:
+      PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN }}

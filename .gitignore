@@ -1,11 +1,11 @@
 HELP.md
+hello-springboot-microservice-*.tgz
 
 # Created by https://www.toptal.com/developers/gitignore/api/maven,java,eclipse,visualstudiocode,netbeans,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven,java,eclipse,visualstudiocode,netbeans,intellij
 
 ### Eclipse ###
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
