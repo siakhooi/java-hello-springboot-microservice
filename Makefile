@@ -25,6 +25,8 @@ setversion:
 
 create-release:
 	gh release create 0.2.0 --title 'add actuator' --notes "add actuator" --latest
+create-release-1:
+	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:
