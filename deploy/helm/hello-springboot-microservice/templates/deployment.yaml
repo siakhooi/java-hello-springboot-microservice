@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/component: app
     app.kubernetes.io/part-of: app
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    helm.sh/chart: {{ include "helm_chart_name_version" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -25,7 +25,7 @@ spec:
         app.kubernetes.io/component: app
         app.kubernetes.io/part-of: app
         app.kubernetes.io/managed-by: {{ .Release.Service }}
-        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}   
+        helm.sh/chart: {{ include "helm_chart_name_version" . }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

@@ -24,7 +24,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.3.0
 
 create-release:
-	gh release create 0.4.0 --title 'helm add label' --notes "helm add label\nhelm 0.3.0 docker 0.3.0 jar 0.3.0" --latest
+	gh release create 0.5.0 --title 'helm chart version as defined' --notes "helm chart version as defined, helm 0.4.0 docker 0.3.0 jar 0.3.0" --latest
 create-release-1:
 	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
@@ -49,6 +49,11 @@ helm-create:
 	mkdir -p deploy/helm
 	cd deploy/helm
 	helm create hello-springboot-microservice
+
+helm-lint:
+	helm lint deploy/helm/hello-springboot-microservice/
+helm-template:
+	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/
 
 helm-build:
 	helm lint deploy/helm/hello-springboot-microservice/
