@@ -3,7 +3,7 @@ replicaCount: 1
 deployment:
   image:
     repository: siakhooi/hello-springboot-microservice
-    tag: "latest"
+    tag: "0.3.0"
     pullPolicy: IfNotPresent
   resources:
     limits:

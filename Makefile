@@ -10,8 +10,8 @@ spring-init-hello-springboot-microservice:
 	  -d=web \
 	  --extract
 
-java17:
-	sdk install java 17.0.10-amzn
+java21:
+	sdk install java 21.0.2-tem  
 build:
 	mvn clean verify
 clean:
@@ -21,7 +21,7 @@ run:
 test:
 	mvn test
 setversion:
-	mvn versions:set -DnewVersion=0.2.0
+	mvn versions:set -DnewVersion=0.3.0
 
 create-release:
 	gh release create 0.2.0 --title 'add actuator' --notes "add actuator" --latest
@@ -39,7 +39,7 @@ curl:
 curl-earth:
 	curl http://localhost:8080/greeting?name=Earth
 curl-actuator:
-	curl http://localhost:8080/actuator |jq
+	curl --no-progress-meter  http://localhost:8080/actuator |jq
 curl-actuator-health:
 	curl http://localhost:8080/actuator/health
 curl-actuator-shutdown:
