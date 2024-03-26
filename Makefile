@@ -24,7 +24,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.3.0
 
 create-release:
-	gh release create 0.6.0 --title 'helm - add readinessProbe, livenessProbe' --notes "helm - add readinessProbe, livenessProbe, helm 0.5.0 docker 0.3.0 jar 0.3.0" --latest
+	gh release create 0.7.0 --title 'helm - externalize readinessProbe, livenessProbe' --notes "helm - externalize readinessProbe, livenessProbe, helm 0.6.0 docker 0.3.0 jar 0.3.0" --latest
 create-release-1:
 	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
