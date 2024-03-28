@@ -24,7 +24,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.3.0
 
 create-release:
-	gh release create 0.7.0 --title 'helm - externalize readinessProbe, livenessProbe' --notes "helm - externalize readinessProbe, livenessProbe, helm 0.6.0 docker 0.3.0 jar 0.3.0" --latest
+	gh release create 0.7.0 --title 'helm - add Service' --notes "helm - add Service, helm 0.7.0 docker 0.3.0 jar 0.3.0" --latest
 create-release-1:
 	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
@@ -54,8 +54,6 @@ helm-lint:
 	helm lint deploy/helm/hello-springboot-microservice/
 helm-template:
 	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/ --debug
-
-helm-build:
-	helm lint deploy/helm/hello-springboot-microservice/
-	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/
+helm-package:
 	helm package   deploy/helm/hello-springboot-microservice/ 
+helm-build: helm-lint helm-template helm-package
