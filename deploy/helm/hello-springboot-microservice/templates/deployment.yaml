@@ -59,6 +59,18 @@ spec:
             successThreshold: {{ (.Values.deployment.livenessProbe.successThreshold) | default 1 }}
             failureThreshold: {{ (.Values.deployment.livenessProbe.failureThreshold) | default 1 }}
 {{- end }}
+{{- if .Values.deployment.startupProbe.enabled  }}
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: {{ (.Values.deployment.startupProbe.initialDelaySeconds) | default 10 }}
+            periodSeconds: {{ (.Values.deployment.startupProbe.periodSeconds) | default 5 }}
+            timeoutSeconds: {{ (.Values.deployment.startupProbe.timeoutSeconds) | default 1 }}
+            successThreshold: {{ (.Values.deployment.startupProbe.successThreshold) | default 1 }}
+            failureThreshold: {{ (.Values.deployment.startupProbe.failureThreshold) | default 1 }}
+{{- end }}
 {{- if .Values.deployment.resources  }}
           resources:
 {{ .Values.deployment.resources | toYaml | indent 12 }}
