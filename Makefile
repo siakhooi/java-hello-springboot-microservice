@@ -20,11 +20,14 @@ run:
 	mvn spring-boot:run
 test:
 	mvn test
+dv:
+	mvn versions:display-dependency-updates
+
 setversion:
-	mvn versions:set -DnewVersion=0.3.0
+	mvn versions:set -DnewVersion=0.4.0
 
 create-release:
-	gh release create 0.9.0 --title 'helm - add startupProbe' --notes "helm - add startupProbe, helm 0.8.0 docker 0.3.0 jar 0.3.0" --latest
+	gh release create 0.10.0 --title 'mvn update dependency' --notes "mvn update dependency, helm 0.8.0 docker 0.4.0 jar 0.4.0" --latest
 create-release-1:
 	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
