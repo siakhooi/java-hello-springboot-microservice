@@ -27,7 +27,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.4.0
 
 create-release:
-	gh release create 0.10.0 --title 'mvn update dependency' --notes "mvn update dependency, helm 0.8.0 docker 0.4.0 jar 0.4.0" --latest
+	gh release create 0.11.0 --title 'docker - add labels, security' --notes "docker - add labels, security, helm 0.9.0 docker 0.5.0 jar 0.4.0" --latest
 create-release-1:
 	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
 delete-release:
@@ -35,7 +35,11 @@ delete-release:
 docker-build:
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
 docker-run:
-	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest 
+	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest
+docker-run-base:
+	docker run -it --rm eclipse-temurin:21.0.2_13-jre-alpine sh
+docker-inspect:
+	docker inspect siakhooi/hello-springboot-microservice:latest
 
 curl:
 	curl http://localhost:8080/greeting
