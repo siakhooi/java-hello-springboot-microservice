@@ -27,9 +27,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.4.0
 
 create-release:
-	gh release create 0.11.0 --title 'docker - add labels, security' --notes "docker - add labels, security, helm 0.9.0 docker 0.5.0 jar 0.4.0" --latest
-create-release-1:
-	gh release create 0.2.1 --title 'add helm chart' --notes "add helm chart" --latest
+	gh release create 0.12.0 --title 'helm - define chart-labels template' --notes "helm - define chart-labels template, helm 0.10.0 docker 0.5.0 jar 0.4.0" --latest
 delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:
