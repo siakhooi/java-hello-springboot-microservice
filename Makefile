@@ -27,7 +27,7 @@ setversion:
 	mvn versions:set -DnewVersion=0.4.0
 
 create-release:
-	gh release create 0.12.0 --title 'helm - define chart-labels template' --notes "helm - define chart-labels template, helm 0.10.0 docker 0.5.0 jar 0.4.0" --latest
+	gh release create 0.13.0 --title 'helm - add test-service' --notes "helm - add test-service, helm 0.11.0 docker 0.5.0 jar 0.4.0" --latest
 delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:
