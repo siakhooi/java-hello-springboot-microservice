@@ -18,16 +18,21 @@ clean:
 	mvn clean
 run:
 	mvn spring-boot:run
+run-moon:
+	java -jar -Dapp.defaultGreetingMessage=Moon target/hellospringbootmicroservice-0.4.0.jar 
+run-jupiter:
+	app_defaultGreetingMessage=Jupiter java -jar target/hellospringbootmicroservice-0.4.0.jar 
+
 test:
 	mvn test
 dv:
 	mvn versions:display-dependency-updates
 
 setversion:
-	mvn versions:set -DnewVersion=0.4.0
+	mvn versions:set -DnewVersion=0.5.0
 
 create-release:
-	gh release create 0.13.0 --title 'helm - add test-service' --notes "helm - add test-service, helm 0.11.0 docker 0.5.0 jar 0.4.0" --latest
+	gh release create 0.14.0 --title 'jar - externalize defaultMessage' --notes "jar - externalize defaultMessage, helm 0.12.0 docker 0.6.0 jar 0.5.0" --latest
 delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:

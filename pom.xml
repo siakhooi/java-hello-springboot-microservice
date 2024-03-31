@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>sing.app</groupId>
 	<artifactId>hellospringbootmicroservice</artifactId>
-	<version>0.4.0</version>
+	<version>0.5.0</version>
 	<name>Hello Spring Boot Microservice</name>
 	<description>Hello Spring Boot Microservice</description>
 	<properties>

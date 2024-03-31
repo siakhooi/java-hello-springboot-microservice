@@ -13,28 +13,19 @@ import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.defaultGreetingMessage=Jupiter")
 @AutoConfigureMockMvc
-class ControllerMvcTest {
+class ControllerMvcPropertiesTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	void shouldReturnDefaultMessage() throws Exception {
+	void shouldReturnMessageFromConfig() throws Exception {
 		this.mockMvc
 				.perform(get("/greeting"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello, World!")));
+				.andExpect(content().string(containsString("Hello, Jupiter!")));
 	}
-	@Test
-	void shouldReturnMessageWithName() throws Exception {
-		this.mockMvc
-				.perform(get("/greeting?name=Earth"))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello, Earth!")));
-	}
-
 }
