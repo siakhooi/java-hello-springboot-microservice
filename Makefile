@@ -29,13 +29,17 @@ dv:
 	mvn versions:display-dependency-updates
 
 setversion:
-	mvn versions:set -DnewVersion=0.5.0
+	bin/update-versions.sh
 
 create-release:
-	gh release create 0.14.0 --title 'jar - externalize defaultMessage' --notes "jar - externalize defaultMessage, helm 0.12.0 docker 0.6.0 jar 0.5.0" --latest
+	bin/create-release.sh
+
+verify-all: setversion build docker-build helm-lint helm-package
+	
 delete-release:
 	gh release delete --cleanup-tag 0.2.0
 docker-build:
+	cp target/hello*.jar .
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
 docker-run:
 	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest

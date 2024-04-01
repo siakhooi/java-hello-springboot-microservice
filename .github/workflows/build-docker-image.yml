@@ -24,6 +24,10 @@ jobs:
           name: deliverables
           path: ./
       - run: ls -l
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: siakhooi/hello-springboot-microservice
       - uses: docker/login-action@v3
         with:
           username: siakhooi
@@ -34,4 +38,5 @@ jobs:
           context: ./
           file: ./deploy/docker/Dockerfile
           push: ${{ inputs.push-images }}
-          tags: siakhooi/hello-springboot-microservice:latest,siakhooi/hello-springboot-microservice:0.6.0
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
