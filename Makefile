@@ -37,7 +37,7 @@ create-release:
 verify-all: setversion build docker-build helm-lint helm-package
 	
 delete-release:
-	gh release delete --cleanup-tag 0.2.0
+	gh release delete --cleanup-tag 0.15.0
 docker-build:
 	cp target/hello*.jar .
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
