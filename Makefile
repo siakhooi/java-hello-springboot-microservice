@@ -47,7 +47,8 @@ docker-run-base:
 	docker run -it --rm eclipse-temurin:21.0.2_13-jre-alpine sh
 docker-inspect:
 	docker inspect siakhooi/hello-springboot-microservice:latest
-
+docker-get-base-digest:
+	docker inspect eclipse-temurin:21.0.2_13-jre-alpine | jq -r '.[].Id'
 curl:
 	curl http://localhost:8080/greeting
 curl-earth:
