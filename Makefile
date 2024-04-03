@@ -43,6 +43,8 @@ docker-build:
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
 docker-run:
 	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest
+docker-run-uranus:
+	docker run --rm -p 8080:8080 -e app_defaultGreetingMessage=Uranus siakhooi/hello-springboot-microservice:latest
 docker-run-base:
 	docker run -it --rm eclipse-temurin:21.0.2_13-jre-alpine sh
 docker-inspect:
