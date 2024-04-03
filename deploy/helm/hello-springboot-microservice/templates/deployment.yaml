@@ -23,6 +23,17 @@ spec:
             - containerPort: 8080
               name: http
               protocol: TCP
+{{- if .Values.deployment.securityContext.enabled }}
+          securityContext:
+             runAsUser:  {{ (.Values.deployment.securityContext.runAsUser) | default 10000 }}
+             runAsGroup:  {{ (.Values.deployment.securityContext.runAsGroup) | default 10000 }}
+             fsGroup:  {{ (.Values.deployment.securityContext.fsGroup) | default 10000 }}
+             fsGroupChangePolicy:  {{ (.Values.deployment.securityContext.fsGroupChangePolicy) | default "OnRootMismatch" }}
+             allowPrivilegeEscalation:  {{ (.Values.deployment.securityContext.allowPrivilegeEscalation) | default false }}
+             privileged:  {{ (.Values.deployment.securityContext.privileged) | default false }}
+             readOnlyRootFilesystem:  {{ (.Values.deployment.securityContext.readOnlyRootFilesystem) | default true }}
+             runAsNonRoot:  {{ (.Values.deployment.securityContext.runAsNonRoot) | default true }}
+{{- end }}
 {{- if .Values.deployment.readinessProbe.enabled }}
           readinessProbe:
             httpGet:

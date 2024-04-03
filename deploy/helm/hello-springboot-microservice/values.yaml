@@ -3,7 +3,7 @@ deployment:
 # replicaCount: 1              # set the deployment spec.replicas
 
   image:
-    tag: "0.10.0"
+    tag: "0.11.0"
 #   pullPolicy: IfNotPresent   # set the deployment container pullPolicy
 
   resources:             # enable to set deployment container resources
@@ -35,3 +35,15 @@ deployment:
 #   timeoutSeconds: 1
 #   successThreshold: 1
 #   failureThreshold: 10
+
+  securityContext:
+     enabled: true            # enable securityContext
+     runAsUser: 10000
+     runAsGroup: 10000
+     fsGroup: 10000
+     fsGroupChangePolicy: "OnRootMismatch"
+     allowPrivilegeEscalation: false
+     privileged: false
+     readOnlyRootFilesystem: true
+     runAsNonRoot: true
+
