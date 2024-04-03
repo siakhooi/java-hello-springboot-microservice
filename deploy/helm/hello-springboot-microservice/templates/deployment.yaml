@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "chart-labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.deployment.replicaCount | default 1 }}
   selector:
     matchLabels:
       app: hello-springboot-microservice
@@ -17,13 +17,13 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
-          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          image: {{ include "image-name" . }}:{{ .Values.deployment.image.tag }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy | default "IfNotPresent" }}
           ports:
             - containerPort: 8080
               name: http
               protocol: TCP
-{{- if (.Values.deployment.readinessProbe).enabled  }}
+{{- if .Values.deployment.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -47,7 +47,7 @@ spec:
             successThreshold: {{ (.Values.deployment.livenessProbe.successThreshold) | default 1 }}
             failureThreshold: {{ (.Values.deployment.livenessProbe.failureThreshold) | default 1 }}
 {{- end }}
-{{- if .Values.deployment.startupProbe.enabled  }}
+{{- if .Values.deployment.startupProbe.enabled }}
           startupProbe:
             httpGet:
               path: /actuator/health

@@ -1,35 +1,37 @@
-replicaCount: 1
-
 deployment:
+
+# replicaCount: 1              # set the deployment spec.replicas
+
   image:
-    repository: siakhooi/hello-springboot-microservice
-    tag: "0.9.0"
-    pullPolicy: IfNotPresent
-  resources:
+    tag: "0.10.0"
+#   pullPolicy: IfNotPresent   # set the deployment container pullPolicy
+
+  resources:             # enable to set deployment container resources
     limits:
       cpu: 300m
       memory: 256Mi
     requests:
       cpu: 100m
       memory: 128Mi  
+
   readinessProbe:
-    enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    timeoutSeconds: 1
-    successThreshold: 1
-    failureThreshold: 1
+    enabled: true              # enable the readinessProbe
+#   initialDelaySeconds: 10
+#   periodSeconds: 5
+#   timeoutSeconds: 1
+#   successThreshold: 1
+#   failureThreshold: 1
   livenessProbe:
-    enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    timeoutSeconds: 1
-    successThreshold: 1
-    failureThreshold: 1
+    enabled: true              # enable the livenessProbe
+#   initialDelaySeconds: 10
+#   periodSeconds: 5
+#   timeoutSeconds: 1
+#   successThreshold: 1
+#   failureThreshold: 1
   startupProbe:
-    enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    timeoutSeconds: 1
-    successThreshold: 1
-    failureThreshold: 10
+    enabled: true              # enable the startupProbe
+#   initialDelaySeconds: 10
+#   periodSeconds: 5
+#   timeoutSeconds: 1
+#   successThreshold: 1
+#   failureThreshold: 10

@@ -12,3 +12,7 @@ app.kubernetes.io/part-of: app
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 helm.sh/chart: {{ include "helm_chart_name_version" . }}
 {{- end }}
+
+{{- define "image-name" -}}
+siakhooi/hello-springboot-microservice
+{{- end }}
