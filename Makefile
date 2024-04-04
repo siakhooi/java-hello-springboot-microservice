@@ -11,7 +11,7 @@ spring-init-hello-springboot-microservice:
 	  --extract
 
 java21:
-	sdk install java 21.0.2-tem  
+	sdk install java 21.0.2-tem
 build:
 	mvn clean verify
 clean:
