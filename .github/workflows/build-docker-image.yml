@@ -35,4 +35,4 @@ jobs:
           context: ./
           file: ./deploy/docker/Dockerfile
           push: ${{ inputs.push-images }}
-          tags: siakhooi/hello-springboot-microservice:latest,siakhooi/hello-springboot-microservice:${{ env.DOCKER_VERSION }}
+          tags: ${{ env.DOCKER_IMAGE_NAME }}:latest,${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_VERSION }}
