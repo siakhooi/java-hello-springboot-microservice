@@ -28,14 +28,15 @@ test:
 dv:
 	mvn versions:display-dependency-updates
 
-setversion:
-	bin/update-versions.sh
-
+verify-all: setversion build docker-build helm-build
+git-push:
+	bin/git-commit-and-push.sh
 create-release:
 	bin/create-release.sh
 
-verify-all: setversion build docker-build helm-lint helm-package
-	
+setversion:
+	bin/update-versions.sh
+
 delete-release:
 	gh release delete --cleanup-tag 0.15.0
 docker-build:
@@ -70,7 +71,7 @@ helm-create:
 helm-lint:
 	helm lint deploy/helm/hello-springboot-microservice/
 helm-template:
-	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/ --debug
+	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/ --debug | tee hello-springboot-release-1.chart.yaml
 helm-package:
 	helm package   deploy/helm/hello-springboot-microservice/ 
 helm-build: helm-lint helm-template helm-package

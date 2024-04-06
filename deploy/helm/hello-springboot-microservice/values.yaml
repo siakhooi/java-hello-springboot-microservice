@@ -6,16 +6,16 @@ deployment:
 # replicaCount: 1              # set the deployment spec.replicas
 
   image:
-    tag: "0.13.0"
+    tag: "0.14.0"
 #   pullPolicy: IfNotPresent   # set the deployment container pullPolicy
 
-  resources:             # enable to set deployment container resources
+  resources:                   # enable to set deployment container resources
     limits:
-      cpu: 300m
-      memory: 256Mi
-    requests:
       cpu: 100m
-      memory: 128Mi  
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi  
 
   readinessProbe:
     enabled: true              # enable the readinessProbe
@@ -41,12 +41,11 @@ deployment:
 
   securityContext:
      enabled: true            # enable securityContext
-     runAsUser: 10000
-     runAsGroup: 10000
-     fsGroup: 10000
-     fsGroupChangePolicy: "OnRootMismatch"
-     allowPrivilegeEscalation: false
-     privileged: false
-     readOnlyRootFilesystem: true
-     runAsNonRoot: true
-
+#    runAsUser: 10000
+#    runAsGroup: 10000
+#    fsGroup: 10000
+#    fsGroupChangePolicy: "OnRootMismatch"
+#    allowPrivilegeEscalation: false
+#    privileged: false
+#    readOnlyRootFilesystem: true
+#    runAsNonRoot: true
