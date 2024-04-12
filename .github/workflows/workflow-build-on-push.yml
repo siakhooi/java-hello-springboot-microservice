@@ -15,6 +15,7 @@ jobs:
     needs: build-with-maven
     uses: ./.github/workflows/build-docker-image.yml
     secrets:
+      REGISTRY_TOKEN_GHCR: ${{ secrets.REGISTRY_TOKEN_GHCR }}
       REGISTRY_PASSWORD_DOCKER: ${{ secrets.REGISTRY_PASSWORD_DOCKER }}
     with:
       push-images: false
