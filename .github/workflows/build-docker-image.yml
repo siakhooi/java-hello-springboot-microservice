@@ -44,4 +44,8 @@ jobs:
           context: ./
           file: ./deploy/docker/Dockerfile
           push: ${{ inputs.push-images }}
-          tags: ${{ env.DOCKER_IMAGE_NAME }}:latest,${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_VERSION }}
+          tags: |
+            ${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_VERSION }}
+            ${{ env.DOCKER_IMAGE_NAME_GHCR }}:latest
+            ${{ env.DOCKER_IMAGE_NAME_GHCR }}:${{ env.DOCKER_VERSION }}

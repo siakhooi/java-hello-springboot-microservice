@@ -38,7 +38,7 @@ setversion:
 	bin/update-versions.sh
 
 delete-release:
-	gh release delete --cleanup-tag 0.15.0
+	gh release delete --cleanup-tag 0.25.0
 docker-build:
 	cp target/hello*.jar .
 	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
