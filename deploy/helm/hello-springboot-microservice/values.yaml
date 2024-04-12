@@ -6,7 +6,7 @@ deployment:
 # replicaCount: 1              # set the deployment spec.replicas
 
   image:
-    tag: "0.14.0"
+    tag: "0.15.0"
 #   pullPolicy: IfNotPresent   # set the deployment container pullPolicy
 
   resources:                   # enable to set deployment container resources
@@ -49,3 +49,7 @@ deployment:
 #    privileged: false
 #    readOnlyRootFilesystem: true
 #    runAsNonRoot: true
+
+#podDisruptionBudget:   # default - not specified
+#  maxUnavailable: 1    # mutual exclusive
+#  minAvailable: 1      # mutual exclusive
