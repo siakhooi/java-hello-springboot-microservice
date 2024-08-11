@@ -11,8 +11,8 @@ LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.base.name=eclipse-temurin:21.0.2_13-jre-alpine
 LABEL org.opencontainers.image.base.digest=sha256:d3e9b76faa33518bedb6f8dbe979c6fdf80892da33eb571957e650cb3d67a93e
 LABEL org.opencontainers.image.version=0.16.0
-LABEL org.opencontainers.image.revision=0.26.2
-LABEL org.opencontainers.image.created="2024-08-11 09:14:27.042346267+00:00"
+LABEL org.opencontainers.image.revision=0.26.3
+LABEL org.opencontainers.image.created="2024-08-11 09:36:34.194152275+00:00"
 
 ARG APP_VERSION=0.7.0
 
