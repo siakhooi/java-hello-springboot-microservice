@@ -15,10 +15,16 @@ spec:
         app: hello-springboot-microservice
       {{- include "chart-labels" . | nindent 8 }}
     spec:
+      volumes:
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "image-name" . }}:{{ .Values.deployment.image.tag }}
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy | default "IfNotPresent" }}
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
           ports:
             - containerPort: 8080
               name: http
@@ -75,14 +81,8 @@ spec:
             successThreshold: {{ (.Values.deployment.startupProbe.successThreshold) | default 1 }}
             failureThreshold: {{ (.Values.deployment.startupProbe.failureThreshold) | default 1 }}
 {{- end }}
-          volumeMounts:
-            - mountPath: /tmp
-              name: tmp
 
 {{- if .Values.deployment.resources  }}
           resources:
 {{ .Values.deployment.resources | toYaml | indent 12 }}
-{{ end }}
-  volumes:
-    - emptyDir: {}
-      name: tmp
+{{- end }}
