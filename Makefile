@@ -1,3 +1,11 @@
+verify-all: setversion build docker-build helm-build
+setversion:
+	bin/update-versions.sh
+git-push:
+	bin/git-commit-and-push.sh
+create-release:
+	bin/create-release.sh
+
 spring-init-hello-springboot-microservice:
 	spring init --java-version 17 \
 	  --group-id 'sing.app' \
@@ -19,23 +27,14 @@ clean:
 run:
 	mvn spring-boot:run
 run-moon:
-	java -jar -Dapp.defaultGreetingMessage=Moon target/hellospringbootmicroservice-0.4.0.jar 
+	java -jar -Dapp.defaultGreetingMessage=Moon target/hellospringbootmicroservice-0.6.0.jar
 run-jupiter:
-	app_defaultGreetingMessage=Jupiter java -jar target/hellospringbootmicroservice-0.4.0.jar 
+	app_defaultGreetingMessage=Jupiter java -jar target/hellospringbootmicroservice-0.6.0.jar
 
 test:
 	mvn test
 dv:
 	mvn versions:display-dependency-updates
-
-verify-all: setversion build docker-build helm-build
-git-push:
-	bin/git-commit-and-push.sh
-create-release:
-	bin/create-release.sh
-
-setversion:
-	bin/update-versions.sh
 
 delete-release:
 	gh release delete --cleanup-tag 0.25.0
@@ -73,5 +72,5 @@ helm-lint:
 helm-template:
 	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/ --debug | tee hello-springboot-release-1.chart.yaml
 helm-package:
-	helm package   deploy/helm/hello-springboot-microservice/ 
+	helm package   deploy/helm/hello-springboot-microservice/
 helm-build: helm-lint helm-template helm-package

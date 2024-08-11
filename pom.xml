@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
+		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sing.app</groupId>
 	<artifactId>hellospringbootmicroservice</artifactId>
-	<version>0.6.0</version>
+	<version>0.7.0</version>
 	<name>Hello Spring Boot Microservice</name>
 	<description>Hello Spring Boot Microservice</description>
 	<properties>
@@ -33,9 +33,9 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.32</version>
+			<version>1.18.34</version>
 			<scope>provided</scope>
-		</dependency>		
+		</dependency>
 	</dependencies>
 
 	<build>
