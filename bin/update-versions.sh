@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+# shellcheck disable=SC1091
 . ./release.env
 
 mvn versions:set -DnewVersion="$MAVEN_JAR_VERSION"
