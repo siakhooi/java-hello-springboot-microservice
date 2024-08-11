@@ -75,7 +75,14 @@ spec:
             successThreshold: {{ (.Values.deployment.startupProbe.successThreshold) | default 1 }}
             failureThreshold: {{ (.Values.deployment.startupProbe.failureThreshold) | default 1 }}
 {{- end }}
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+
 {{- if .Values.deployment.resources  }}
           resources:
 {{ .Values.deployment.resources | toYaml | indent 12 }}
 {{ end }}
+  volumes:
+    - emptyDir: {}
+      name: tmp

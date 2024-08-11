@@ -5,6 +5,10 @@ git-push:
 	bin/git-commit-and-push.sh
 create-release:
 	bin/create-release.sh
+git-watch:
+	gh run watch
+	gh run list
+	gh run rerun --failed
 
 spring-init-hello-springboot-microservice:
 	spring init --java-version 17 \
@@ -24,6 +28,8 @@ build:
 	mvn clean verify
 clean:
 	mvn clean
+	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml
+
 run:
 	mvn spring-boot:run
 run-moon:
