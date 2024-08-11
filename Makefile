@@ -28,7 +28,7 @@ build:
 	mvn clean verify
 clean:
 	mvn clean
-	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml
+	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml hellospringbootmicroservice-*.jar
 
 run:
 	mvn spring-boot:run
