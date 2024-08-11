@@ -2,8 +2,8 @@
 set -e
 
 PATH_TO_FILE=$(ls ./hello-springboot-microservice-*.tgz)
-HELM_CHART_SOURCE_PATH=$(realpath $PATH_TO_FILE)
-HELM_CHART_PACKAGE_FILE=$(basename $PATH_TO_FILE)
+HELM_CHART_SOURCE_PATH=$(realpath "$PATH_TO_FILE")
+HELM_CHART_PACKAGE_FILE=$(basename "$PATH_TO_FILE")
 
 TMPDIR=$(mktemp -d)
 
@@ -16,7 +16,7 @@ TARGET_GIT_USERNAME=shello-springboot-microservice
 TARGET_COMMIT_MESSAGE="hello-springboot-microservice: Auto deploy [$(date)]"
 
 (
-  cd $TMPDIR
+  cd "$TMPDIR"
   git config --global user.email "$TARGET_GIT_EMAIL"
   git config --global user.name "$TARGET_GIT_USERNAME"
 
@@ -25,8 +25,8 @@ TARGET_COMMIT_MESSAGE="hello-springboot-microservice: Auto deploy [$(date)]"
   git remote set-url origin "$TARGETURL"
   git restore --staged .
   mkdir -p $TARGETPATH
-  cp -v -f $HELM_CHART_SOURCE_PATH $TARGETPATH/$HELM_CHART_PACKAGE_FILE
-  git add $TARGETPATH/$HELM_CHART_PACKAGE_FILE
+  cp -v -f "$HELM_CHART_SOURCE_PATH" "$TARGETPATH/$HELM_CHART_PACKAGE_FILE"
+  git add "$TARGETPATH/$HELM_CHART_PACKAGE_FILE"
   git status
   git commit -m "$TARGET_COMMIT_MESSAGE"
   git push
