@@ -1,6 +1,4 @@
 verify-all: setversion build docker-build helm-build
-setversion:
-	bin/update-versions.sh
 git-push:
 	bin/git-commit-and-push.sh
 create-release:
@@ -9,6 +7,9 @@ git-watch:
 	gh run watch
 	gh run list
 	gh run rerun --failed
+
+setversion:
+	bin/update-versions.sh
 
 spring-init-hello-springboot-microservice:
 	spring init --java-version 17 \
@@ -21,9 +22,6 @@ spring-init-hello-springboot-microservice:
 	  --type  maven-project \
 	  -d=web \
 	  --extract
-
-java21:
-	sdk install java 21.0.2-tem
 build:
 	mvn clean verify
 clean:
@@ -45,8 +43,7 @@ dv:
 delete-release:
 	gh release delete --cleanup-tag 0.25.0
 docker-build:
-	cp target/hello*.jar .
-	docker build . -f deploy/docker/Dockerfile -t siakhooi/hello-springboot-microservice:latest
+	bin/docker-build.sh
 docker-run:
 	docker run --rm -p 8080:8080 siakhooi/hello-springboot-microservice:latest
 docker-run-uranus:
@@ -80,3 +77,21 @@ helm-template:
 helm-package:
 	helm package   deploy/helm/hello-springboot-microservice/
 helm-build: helm-lint helm-template helm-package
+
+helm-reinstall: helm-uninstall zootopia-load-image helm-install
+helm-uninstall:
+	shed-helm uninstall hello1
+helm-install: zootopia-load-image
+	shed-helm install hello1 ./hello-springboot-microservice-0.24.0.tgz
+
+k-pf:
+	shed-kubectl port-forward service/hello1-hello-springboot-microservice 8080:80
+k-create-configmap:
+	k create configmap hello-spring-boot-microservice --from-literal=app.defaultGreetingMessage=Wakanda
+k-get-cm:
+	shed-kubectl get cm/hello-springboot-microservice -o yaml
+k-edit-cm:
+	shed-kubectl edit cm/hello-springboot-microservice
+
+zootopia-load-image:
+	zootopia-load-docker-images siakhooi/hello-springboot-microservice:0.18.0

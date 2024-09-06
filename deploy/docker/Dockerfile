@@ -10,11 +10,11 @@ LABEL org.opencontainers.image.description="POC/template repo for Springboot Mic
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.base.name=eclipse-temurin:21.0.2_13-jre-alpine
 LABEL org.opencontainers.image.base.digest=sha256:d3e9b76faa33518bedb6f8dbe979c6fdf80892da33eb571957e650cb3d67a93e
-LABEL org.opencontainers.image.version=0.17.0
-LABEL org.opencontainers.image.revision=0.27.0
-LABEL org.opencontainers.image.created="2024-08-11 09:46:50.703030536+00:00"
+LABEL org.opencontainers.image.version=0.18.0
+LABEL org.opencontainers.image.revision=0.28.0
+LABEL org.opencontainers.image.created="2024-09-06 00:37:57.341259931+00:00"
 
-ARG APP_VERSION=0.7.0
+ARG APP_VERSION=0.8.0
 
 EXPOSE 8080
 

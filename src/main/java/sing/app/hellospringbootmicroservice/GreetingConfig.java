@@ -1,12 +1,17 @@
 package sing.app.hellospringbootmicroservice;
 
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 import lombok.Data;
 
-@Component
+@Configuration
 @Data
+@ConfigurationProperties(prefix = "app")
 public class GreetingConfig {
-    @Value("${app.defaultGreetingMessage}")
-    private String defaultMessage;
+    private String defaultGreetingMessage;
+
+    public String getDefaultMessage() {
+        return getDefaultGreetingMessage();
+    }
 }
