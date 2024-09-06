@@ -1,8 +1,9 @@
-verify-all: setversion build docker-build helm-build
+verify-all: clean setversion build docker-build helm-build
 git-push:
 	bin/git-commit-and-push.sh
 create-release:
 	bin/create-release.sh
+
 git-watch:
 	gh run watch
 	gh run list
@@ -10,6 +11,23 @@ git-watch:
 
 setversion:
 	bin/update-versions.sh
+dv:
+	mvn versions:display-dependency-updates
+
+build:
+	mvn verify
+clean:
+	mvn clean
+	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml hellospringbootmicroservice-*.jar
+test:
+	mvn test
+
+run:
+	mvn spring-boot:run
+run-moon:
+	java -jar -Dapp.defaultGreetingMessage=Moon target/hellospringbootmicroservice-0.6.0.jar
+run-jupiter:
+	app_defaultGreetingMessage=Jupiter java -jar target/hellospringbootmicroservice-0.6.0.jar
 
 spring-init-hello-springboot-microservice:
 	spring init --java-version 17 \
@@ -22,23 +40,7 @@ spring-init-hello-springboot-microservice:
 	  --type  maven-project \
 	  -d=web \
 	  --extract
-build:
-	mvn clean verify
-clean:
-	mvn clean
-	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml hellospringbootmicroservice-*.jar
 
-run:
-	mvn spring-boot:run
-run-moon:
-	java -jar -Dapp.defaultGreetingMessage=Moon target/hellospringbootmicroservice-0.6.0.jar
-run-jupiter:
-	app_defaultGreetingMessage=Jupiter java -jar target/hellospringbootmicroservice-0.6.0.jar
-
-test:
-	mvn test
-dv:
-	mvn versions:display-dependency-updates
 
 delete-release:
 	gh release delete --cleanup-tag 0.25.0
