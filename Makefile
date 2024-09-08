@@ -11,14 +11,12 @@ git-watch:
 
 setversion:
 	bin/update-versions.sh
-dv:
-	mvn versions:display-dependency-updates
 
 build:
 	mvn verify
 clean:
 	mvn clean
-	rm hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml hellospringbootmicroservice-*.jar
+	rm -f hello-springboot-microservice-*.tgz hello-springboot-release-1.chart.yaml hellospringbootmicroservice-*.jar
 test:
 	mvn test
 
