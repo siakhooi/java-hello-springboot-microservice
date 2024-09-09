@@ -59,11 +59,15 @@ curl:
 curl-earth:
 	curl http://localhost:8080/greeting?name=Earth
 curl-actuator:
-	curl --no-progress-meter  http://localhost:8080/actuator |jq
+	curl --no-progress-meter http://localhost:8080/actuator |jq
 curl-actuator-health:
 	curl http://localhost:8080/actuator/health
 curl-actuator-shutdown:
 	curl -X POST http://localhost:8080/actuator/shutdown
+curl-springdoc-api:
+	curl --no-progress-meter http://localhost:8080/v3/api-docs
+curl-springdoc-api-ui:
+	curl --no-progress-meter http://localhost:8080/swagger-ui.html
 
 helm-create:
 	mkdir -p deploy/helm

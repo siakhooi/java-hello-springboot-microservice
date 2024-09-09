@@ -2,29 +2,41 @@ package sing.app.hellospringbootmicroservice;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
 public class GreetingController {
 
-	@Autowired
-	private GreetingConfig config;
+    private GreetingConfig config;
 
-	private static final String GREETING_TEMPLATE = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
+    public GreetingController(GreetingConfig config) {
+        this.config = config;
+    }
 
-	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value = "name", required = false) String name) {
+    private static final String GREETING_TEMPLATE = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
 
-		String displayName = name == null ? config.getDefaultMessage() : name;
+    @GetMapping("/greeting")
+    @Operation(summary = Util.API_GREETING_SUMMARY, description = Util.API_GREETING_DESCRIPTION)
+    @ApiResponse(responseCode = "200", description = "Success", content = {
+            @Content(mediaType = MediaType.APPLICATION_JSON_VALUE) })
+    @Parameter(name = "name", required = false, description = "the hello goes to this name")
+    public Greeting greeting(@RequestParam(value = "name", required = false) String name) {
 
-		log.info("greeting: name: {}", displayName);
+        String displayName = name == null ? config.getDefaultMessage() : name;
 
-		return new Greeting(counter.incrementAndGet(), String.format(GREETING_TEMPLATE, displayName));
-	}
+        log.info("greeting: name: {}", displayName);
+
+        return new Greeting(counter.incrementAndGet(), String.format(GREETING_TEMPLATE, displayName));
+    }
 }
