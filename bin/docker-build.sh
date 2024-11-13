@@ -6,5 +6,5 @@ set -e
 
 cp target/hello*.jar .
 docker build . -f deploy/docker/Dockerfile \
-    -t siakhooi/hello-springboot-microservice:latest \
-    -t siakhooi/hello-springboot-microservice:"$DOCKER_VERSION"
+  -t siakhooi/hello-springboot-microservice:latest \
+  -t siakhooi/hello-springboot-microservice:"$DOCKER_VERSION"
