@@ -80,7 +80,9 @@ helm-template:
 	helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/ --debug | tee hello-springboot-release-1.chart.yaml
 helm-package:
 	helm package   deploy/helm/hello-springboot-microservice/
-helm-build: helm-lint helm-template helm-package
+helm-unittest:
+	bin/helm-unit-test.sh
+helm-build: helm-lint helm-template helm-unittest helm-package
 
 helm-reinstall: helm-uninstall zootopia-load-image helm-install
 helm-uninstall:

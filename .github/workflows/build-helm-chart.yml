@@ -1,6 +1,6 @@
 name: Build helm chart
 
-on: 
+on:
   workflow_dispatch:
   workflow_call:
 
@@ -12,9 +12,15 @@ jobs:
         with:
           fetch-depth: 0
       - run: helm lint deploy/helm/hello-springboot-microservice/
-      - run: helm template  hello-springboot-release-1  deploy/helm/hello-springboot-microservice/
-      - run: helm package   deploy/helm/hello-springboot-microservice/ 
+      - run: helm template hello-springboot-release-1 deploy/helm/hello-springboot-microservice/
+      - run: helm plugin install https://github.com/helm-unittest/helm-unittest.git
+      - run: bin/helm-unit-test.sh
+      - run: helm package deploy/helm/hello-springboot-microservice/
       - uses: actions/upload-artifact@v4
         with:
           name: helm-chart
           path: hello-springboot-microservice-*.tgz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: helm-unit-test.xml
+          path: helm-unit-test.xml
