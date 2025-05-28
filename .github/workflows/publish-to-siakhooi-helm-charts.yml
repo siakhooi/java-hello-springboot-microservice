@@ -3,7 +3,7 @@ name: Publish to siakhooi.github.io/helm-charts
 on:
   workflow_call:
     secrets:
-      PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN:
+      PUBLISH_TO_GITHUB_REPO_TOKEN:
         required: true
 
 jobs:
@@ -18,4 +18,4 @@ jobs:
           path: ./
       - run: ./.github/bin/deploy-to-siakhooi-helm-charts.sh
         env:
-          PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN }}
+          PUBLISH_TO_GITHUB_REPO_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_REPO_TOKEN }}

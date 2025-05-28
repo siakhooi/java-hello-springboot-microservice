@@ -35,4 +35,4 @@ jobs:
     needs: build-helm-chart
     uses: ./.github/workflows/publish-to-siakhooi-helm-charts.yml
     secrets:
-      PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN }}
+      PUBLISH_TO_GITHUB_REPO_TOKEN: ${{ secrets.PUBLISH_TO_GITHUB_REPO_TOKEN }}
