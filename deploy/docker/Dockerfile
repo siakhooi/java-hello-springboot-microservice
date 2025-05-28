@@ -15,12 +15,13 @@ LABEL org.opencontainers.image.revision=0.30.0
 LABEL org.opencontainers.image.created="2024-09-09 10:42:24.298597735+00:00"
 
 ARG APP_VERSION=0.10.0
+ARG JAR_NAME=hellospringbootmicroservice
 
 EXPOSE 8080
 
-COPY --chown=root:root --chmod=644 hellospringbootmicroservice-${APP_VERSION}.jar hellospringbootmicroservice.jar
+COPY --chown=root:root --chmod=644 ${JAR_NAME}-${APP_VERSION}.jar ${JAR_NAME}.jar
 
 RUN addgroup -g 10001 group00 && adduser -D -u 10002 user00 group00
 USER user00:group00
 
-ENTRYPOINT ["java","-jar","/hellospringbootmicroservice.jar"]
+ENTRYPOINT ["java","-jar","/${JAR_NAME}.jar"]

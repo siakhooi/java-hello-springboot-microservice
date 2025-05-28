@@ -4,7 +4,8 @@ set -e
 # shellcheck disable=SC1091
 . ./release.env
 
-cp target/hello*.jar .
+cp target/"${JAR_NAME}-${MAVEN_JAR_VERSION}.jar" .
+
 docker build . -f deploy/docker/Dockerfile \
-  -t siakhooi/hello-springboot-microservice:latest \
-  -t siakhooi/hello-springboot-microservice:"$DOCKER_VERSION"
+  -t siakhooi/"$DOCKER_IMAGE_NAME:latest" \
+  -t siakhooi/"$DOCKER_IMAGE_NAME:$DOCKER_VERSION"

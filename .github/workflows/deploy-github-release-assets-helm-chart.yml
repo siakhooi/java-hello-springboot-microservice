@@ -16,8 +16,9 @@ jobs:
           name: helm-chart
           path: ./
       - run: ls -l
+      - run: cat release.env >> $GITHUB_ENV
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
           file_glob: true
-          file: ./hello-springboot-microservice-*.tgz
+          file: ./${{ env.HELM_CHART_NAME }}-${{ env.HELM_CHART_VERSION }}.tgz

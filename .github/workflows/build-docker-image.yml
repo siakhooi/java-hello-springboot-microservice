@@ -1,4 +1,4 @@
-name: Build hello-springboot-microservice:latest
+name: Build docker images
 
 on:
   workflow_dispatch:

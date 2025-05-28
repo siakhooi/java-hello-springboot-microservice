@@ -11,15 +11,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: helm lint deploy/helm/hello-springboot-microservice/
-      - run: helm template hello-springboot-release-1 deploy/helm/hello-springboot-microservice/
+      - run: cat release.env >> $GITHUB_ENV
+      - run: helm lint deploy/helm/${{ env.HELM_CHART_NAME }}/
+      - run: helm template ${{ env.HELM_CHART_NAME }}-release-1 deploy/helm/${{ env.HELM_CHART_NAME }}/
       - run: helm plugin install https://github.com/helm-unittest/helm-unittest.git
       - run: bin/helm-unit-test.sh
-      - run: helm package deploy/helm/hello-springboot-microservice/
+      - run: helm package deploy/helm/${{ env.HELM_CHART_NAME }}/
       - uses: actions/upload-artifact@v4
         with:
           name: helm-chart
-          path: hello-springboot-microservice-*.tgz
+          path: ${{ env.HELM_CHART_NAME }}-${{ env.HELM_CHART_VERSION }}.tgz
       - uses: actions/upload-artifact@v4
         with:
           name: helm-unit-test.xml

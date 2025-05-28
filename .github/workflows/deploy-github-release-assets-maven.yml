@@ -16,8 +16,9 @@ jobs:
           name: deliverables
           path: ./
       - run: ls -l
+      - run: cat release.env >> $GITHUB_ENV
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.TOKEN_TO_UPLOAD_ASSETS }}
           file_glob: true
-          file: ./hellospringbootmicroservice-*.jar
+          file: ./${{ env.JAR_NAME }}-${{ env.MAVEN_JAR_VERSION }}.jar

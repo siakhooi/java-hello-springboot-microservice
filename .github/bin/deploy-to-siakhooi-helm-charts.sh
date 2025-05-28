@@ -1,19 +1,22 @@
 #!/bin/sh
 set -e
 
-PATH_TO_FILE=$(ls ./hello-springboot-microservice-*.tgz)
+# shellcheck disable=SC1091
+. ./release.env
+
+PATH_TO_FILE=./"${HELM_CHART_NAME}-${HELM_CHART_VERSION}.tgz"
 HELM_CHART_SOURCE_PATH=$(realpath "$PATH_TO_FILE")
 HELM_CHART_PACKAGE_FILE=$(basename "$PATH_TO_FILE")
 
 TMPDIR=$(mktemp -d)
 
-TARGETPATH=docs/hello-springboot-microservice
+TARGETPATH=docs/$HELM_CHART_NAME
 TARGETURL=https://${PUBLISH_TO_GITHUB_HELM_CHARTS_TOKEN}@github.com/siakhooi/helm-charts.git
 TARGETBRANCH=main
 TARGETDIR=helm-charts-repo
-TARGET_GIT_EMAIL=hello-springboot-microservice@siakhooi.github.io
-TARGET_GIT_USERNAME=shello-springboot-microservice
-TARGET_COMMIT_MESSAGE="hello-springboot-microservice: Auto deploy [$(date)]"
+TARGET_GIT_EMAIL=$PROJECT_NAME@siakhooi.github.io
+TARGET_GIT_USERNAME=s$PROJECT_NAME
+TARGET_COMMIT_MESSAGE="$PROJECT_NAME: Auto deploy [$(date)]"
 
 (
   cd "$TMPDIR"
