@@ -6,7 +6,7 @@ on:
       secrets:
         REGISTRY_PASSWORD_DOCKER:
           required: true
-        REGISTRY_TOKEN_GHCR:
+        PUBLISH_TO_GITHUB_REPO_TOKEN:
           required: true
       inputs:
         push-images:
@@ -36,7 +36,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ env.REGISTRY_USERNAME_GHCR }}
-          password: ${{ secrets.REGISTRY_TOKEN_GHCR }}
+          password: ${{ secrets.PUBLISH_TO_GITHUB_REPO_TOKEN }}
       - uses: docker/setup-buildx-action@v3
       - uses: docker/build-push-action@v6
         with:
