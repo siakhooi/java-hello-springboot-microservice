@@ -8,11 +8,11 @@ spec:
   replicas: {{ .Values.deployment.replicaCount | default 1 }}
   selector:
     matchLabels:
-      app: hello-springboot-microservice
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: hello-springboot-microservice
+        app: {{ .Chart.Name }}
       {{- include "chart-labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ .Release.Name }}-{{ .Chart.Name }}

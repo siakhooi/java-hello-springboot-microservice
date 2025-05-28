@@ -6,7 +6,7 @@ metadata:
     {{- include "chart-labels" . | nindent 4 }}
 spec:
   selector:
-    app: hello-springboot-microservice
+    app: {{ .Chart.Name }}
   ports:
     - protocol: TCP
       port: 80

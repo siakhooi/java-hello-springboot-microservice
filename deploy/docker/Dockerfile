@@ -11,8 +11,8 @@ LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.base.name=eclipse-temurin:21.0.2_13-jre-alpine
 LABEL org.opencontainers.image.base.digest=sha256:d3e9b76faa33518bedb6f8dbe979c6fdf80892da33eb571957e650cb3d67a93e
 LABEL org.opencontainers.image.version=0.20.0
-LABEL org.opencontainers.image.revision=0.30.0
-LABEL org.opencontainers.image.created="2024-09-09 10:42:24.298597735+00:00"
+LABEL org.opencontainers.image.revision=0.31.0
+LABEL org.opencontainers.image.created="2025-05-28 07:39:26.214078125+00:00"
 
 ARG APP_VERSION=0.10.0
 ARG JAR_NAME=hellospringbootmicroservice

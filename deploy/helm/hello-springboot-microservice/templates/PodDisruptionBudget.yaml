@@ -8,6 +8,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: hello-springboot-microservice
+      app: {{ .Chart.Name }}
 {{ .Values.podDisruptionBudget | toYaml | indent 2}}
 {{- end }}
