@@ -7,5 +7,5 @@ set -e
 cp target/"${JAR_NAME}-${MAVEN_JAR_VERSION}.jar" .
 
 docker build . -f deploy/docker/Dockerfile \
-  -t siakhooi/"$DOCKER_IMAGE_NAME:latest" \
-  -t siakhooi/"$DOCKER_IMAGE_NAME:$DOCKER_VERSION"
+  -t "$DOCKER_IMAGE_NAME:latest" \
+  -t "$DOCKER_IMAGE_NAME:$DOCKER_VERSION"
